@@ -3,14 +3,17 @@ import requests
 API_KEY = '9a77dbe6a1c28e3e8a5c8c085c45c3a7'
 BASE_URL = 'https://api.openweathermap.org/data/2.5/weather'
 
-print("\n\nHi! Welcome to my weather app. Enter a city you would like to know the weather for!\n")
+print("\n\nHi! Welcome to my weather app. Enter a city you would like to know the weather for! (type quit to exit)\n")
 
 while True:
 
     userCity = input("Enter city: ")
 
+    if userCity.lower().strip() == "quit":
+        break
+
     #1 build the URL using f string
-    url = f"{BASE_URL}?q={userCity}&appid={API_KEY}&units=metric"
+    url = f"{BASE_URL}?q={userCity}&appid={API_KEY}&units=imperial"
 
     #2 send the GET request
     response = requests.get(url)
@@ -31,5 +34,4 @@ while True:
     else:
         print(f"Sorry, Couldn't find the city, check spelling and try again.")
     
-    if userCity.lower().strip() == "quit":
-        break
+    
